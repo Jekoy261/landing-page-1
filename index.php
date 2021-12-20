@@ -1,8 +1,9 @@
 <?php
 
+$root = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? "https://" : "http://"). 'localhost/landing-page-1/';
+
 // $root  =((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? "https://" : "http://").$_SERVER['HTTP_HOST'];
 // $root .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
-$root = 'http://localhost/landing-page/';
 
 defined('BASE_URL') OR define('BASE_URL', $root);
 
