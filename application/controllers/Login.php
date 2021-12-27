@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Login extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,16 +18,24 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		// $this->load->view('welcome_message');
+	public function __construct(){
+	  parent::__construct();
+	}
 
-		$data = [
-			'pf_year'    => date('Y') . ' - '. date('Y',strtotime(date("Y", time()) . " + 365 day")),
-			'today_year' => date('Y'), 
-		];
-
+	public function index() {
 		$this->load->view('includes/header.php');
-		$this->load->view('home/index', $data);
+		$this->load->view('home/login');
+	}
+
+	public function login() {
+		extract($_POST);
+
+
+
+		$query = $this->db->query("SELECT * FROM users WHERE username = ? AND password = ?", [$username, MD5($password)]);
+		$r_query = $query->row_array();	
+		echo json_encode($r_query); exit();
+
+
 	}
 }
