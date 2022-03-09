@@ -72,5 +72,77 @@
 			background: rgb(2,0,36);
 			background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(97,197,199,1) 0%, rgba(0,212,255,1) 100%);
 		}
+		.animated {
+		  -webkit-animation-duration: 1.5s;
+		  animation-duration: 1.5;
+		  -webkit-animation-fill-mode: both;
+		  animation-fill-mode: both;
+		}
+
+		@-webkit-keyframes fadeInDown {
+		  from {
+		    opacity: 0;
+		    -webkit-transform: translate3d(0, -100%, 0);
+		    transform: translate3d(0, -100%, 0);
+		  }
+
+		  to {
+		    opacity: 1;
+		    -webkit-transform: none;
+		    transform: none;
+		  }
+		}
+
+		@keyframes fadeInDown {
+		  from {
+		    opacity: 0;
+		    -webkit-transform: translate3d(0, -100%, 0);
+		    transform: translate3d(0, -100%, 0);
+		  }
+
+		  to {
+		    opacity: 1;
+		    -webkit-transform: none;
+		    transform: none;
+		  }
+		}
+
+		.fadeInDown {
+		  -webkit-animation-name: fadeInDown;
+		  animation-name: fadeInDown;
+		}
+
+		@-webkit-keyframes fadeInUp {
+		  from {
+		    opacity: 0;
+		    -webkit-transform: translate3d(0, 100%, 0);
+		    transform: translate3d(0, 100%, 0);
+		  }
+
+		  to {
+		    opacity: 1;
+		    -webkit-transform: none;
+		    transform: none;
+		  }
+		}
+
+		@keyframes fadeInUp {
+		  from {
+		    opacity: 0;
+		    -webkit-transform: translate3d(0, 100%, 0);
+		    transform: translate3d(0, 100%, 0);
+		  }
+
+		  to {
+		    opacity: 1;
+		    -webkit-transform: none;
+		    transform: none;
+		  }
+		}
+
+		.fadeInUp {
+		  -webkit-animation-name: fadeInUp;
+		  animation-name: fadeInUp;
+		}
 	</style>
 </head>
