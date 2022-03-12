@@ -30,6 +30,13 @@
 		.carousel-custom-1 {
 			padding-top: 80px;
 		}
+		.navbar-custom .container-fluid a.nav-link {
+			color: #4DC8D2 !important;
+		}
+		.navbar-custom .container-fluid a.nav-link.active {
+			color: #000 !important;
+			font-weight: bold;
+		}
 
 		.container-custom-1 {
 			padding-top: 200px;
@@ -65,6 +72,9 @@
 			text-decoration: none;
 			color: #000;
 			margin: 15px;
+		}
+		.text-bold {
+			font-weight: bolder;
 		}
 
 		/* LOGIN  */

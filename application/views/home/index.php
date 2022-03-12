@@ -1,9 +1,14 @@
 <body>
+	<?php
+		$img_logo = 'assets/images/index/logo.png';
+	?>
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top shadow navbar-custom">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="#">
-	      <img src="assets/images/index/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-	      <small style="margin-left: 10px;"> info.test@gmail.com</small>
+	      <img src="<?php echo $img_logo; ?>" alt="" width="30" height="30" class="d-inline-block align-text-top">
+	      <small style="margin-left: 10px;"> 
+	      	COMPANY NAME
+	      </small>
 	    </a>
 	    
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +75,7 @@
 	</content>
 
 	<!-- CONTENT COMPANY DESCRIPTION -->
-	<content id="about">
+	<content id="about" href="about">
 		<div class="container-fluid bg-light container-custom">
 			<div class="row">
 				<div class="col-md-12">
@@ -170,7 +175,7 @@
 							    </div>
 							    <div class="col-md-8">
 							      <div class="card-body">
-							        <h5 class="card-title">Card title</h5>
+							        <h5 class="card-title text-bold"> Place </h5>
 							        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 							        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 							      </div>
@@ -186,7 +191,7 @@
 							    </div>
 							    <div class="col-md-8">
 							      <div class="card-body">
-							        <h5 class="card-title">Card title</h5>
+							        <h5 class="card-title text-bold"> Place </h5>
 							        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 							        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 							      </div>
@@ -202,7 +207,7 @@
 							    </div>
 							    <div class="col-md-8">
 							      <div class="card-body">
-							        <h5 class="card-title">Card title</h5>
+							        <h5 class="card-title text-bold"> Place </h5>
 							        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 							        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 							      </div>
@@ -330,7 +335,7 @@
 					<div class="col-md-5"></div>
 					<div class="col-md-2 text-center bg-light-white" style="margin-top: -250px; margin-bottom: 50px; border-radius: 100%;">
 
-						<img style="padding: 40px;" width="260" height="260" src="<?php echo base_url(); ?>assets/images/index/logo.png">
+						<img style="padding: 40px;" width="260" height="260" src="<?php echo base_url(); ?><?php echo $img_logo; ?>">
 						
 					</div>
 					<div class="col-md-5"></div>
@@ -398,15 +403,4 @@
 <script src="<?php echo base_url('assets/scripts/jquery.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
-<script>
-	$(function() {
-		$(document).on('submit', '.form_login', function(e) {
-			e.preventDefault();
-
-			let username = $('#login_username').val();
-			let password = $('#login_password').val();
-			console.log(username);
-		});
-	});
-</script>
 </html>
