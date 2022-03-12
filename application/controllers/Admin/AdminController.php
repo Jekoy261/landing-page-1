@@ -20,11 +20,16 @@ class AdminController extends CI_Controller {
 	 */
 	public function __construct(){
 	  parent::__construct();
+
+	  $this->load->library('Api', 'api');
 	}
 
 	public function index() {
-		// $this->session->userdata('auth');
-		$this->load->view('includes/header.php');
-		$this->load->view('admin/index');
+		if ($this->session->userdata('auth')) {
+			$this->load->view('includes/header.php');
+			$this->load->view('admin/index');
+		} else {
+			$this->api->logout();
+		}
 	}
 }

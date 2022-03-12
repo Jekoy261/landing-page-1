@@ -35,6 +35,8 @@
 	    </div>
 	  </div>
 	</nav>
+
+	<h1> ADMIN </h1>
 </body>
 
 <!-- SCRIPTS -->

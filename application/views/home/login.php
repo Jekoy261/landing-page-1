@@ -2,10 +2,11 @@
 	<div class="container-fluid">
 		<div class="col-md-12">
 			<div class="row">
+			
 				<div class="col-md-5 d-flex flex-column min-vh-100 justify-content-center align-items-center bg-light-green-grd">
-					<h1 class="text-center"> SAMPLE NAME. </h1>
-					<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p class="text-center">&copy; info.test@gmail.com</p>
+					<h1 class="text-center animated fadeInDown"> SAMPLE NAME. </h1>
+					<p class="text-center animated fadeInUp">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+					<p class="text-center animated fadeInUp">&copy; info.test@gmail.com</p>
 				</div>
 
 				<div class="col-md-7 d-flex flex-column min-vh-100 justify-content-center align-items-center">
@@ -52,15 +53,16 @@
 <!-- SCRIPTS -->
 <script src="<?php echo base_url(); ?>assets/scripts/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script type="text/javascript">
 	let doc             = $(document);
-	let base_url        = document.getElementById('base_url').value;
-	let loginController = base_url + 'login/user';
 	
 	$(function() {
+		let base_url        = $('#username').val();
+		let loginController = 'login/user';
+
 		doc.on('submit', '#login_form', (e) => {
-			console.log(loginController);
 			e.preventDefault();
 
 			let username = $('#username').val();
@@ -76,6 +78,8 @@
 				$('#login_alert').fadeOut(2000, function() {
 			    $('#login_alert').removeClass('d-block').addClass('d-none');
 			  });
+
+			  return;
 			}
 			
 			$.ajax({
@@ -89,7 +93,28 @@
 				assync: true,
 				beforeSend: function(){},
 				success: function(res){
-					console.log(res);
+					let { code, title, msg, type } = res;
+
+					if (code == 1) {
+						/***** 
+						Success Redirect to Admin Dashboard 
+																					*****/
+						window.location.href = msg;
+
+					} else {
+						//function global_swal_alert(title, msg, alert_type) {
+						swal({
+					    title   : title,
+					    text    : msg,
+					    icon    : 'error',
+					    content : true,
+					    button  : {
+					    	'text' : 'OK!',
+					    },
+					  });
+						//};
+					}
+
 				},
 			});
 		});

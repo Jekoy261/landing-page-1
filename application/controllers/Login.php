@@ -20,22 +20,69 @@ class Login extends CI_Controller {
 	 */
 	public function __construct(){
 	  parent::__construct();
+
+	  $this->load->library('Api', 'api');
 	}
 
 	public function index() {
-		$this->load->view('includes/header.php');
-		$this->load->view('home/login');
+		if (!$this->session->userdata('auth')) {
+			$this->load->view('includes/header.php');
+			$this->load->view('home/login');
+		} else {
+			redirect('admin');
+		}
 	}
 
 	public function login() {
 		extract($_POST);
 
+		$rs = [
+			'title' => 'Ooops',
+			'msg' 	=> 'Oops something went wrong!',
+			'type'  => 'danger',
+			'code'  => 0
+		];
 
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
 
-		$query = $this->db->query("SELECT * FROM users WHERE username = ? AND password = ?", [$username, MD5($password)]);
-		$r_query = $query->row_array();	
-		echo json_encode($r_query); exit();
+		if ($username == "") {
+			$rs['msg'] = 'Username is required!';
+		} else if ($password == "") {
+			$rs['msg'] = 'Password is required!';
+		} else {
+			$check = $this->db->where('username', $username)->get('users');
 
+			if ($check->num_rows() > 0) {
+				$data = $check->row_array();
+				
+				if ( MD5($password) == $data['password'] ) {
+					
+					$this->session->set_userdata([
+						'id'          => $data['id'],
+            'employee_id' => $data['emp_id'],
+            'auth'        => 1
+					]);
 
+					$rs = [
+						'title' => 'Success',
+						'msg' 	=> base_url('admin'),
+						'type' 	=> 'success',
+						'code'  => 1
+					];
+
+				} else {
+					$rs['msg'] = 'Invalid username/password!';
+				}
+			} else {
+				$rs['msg'] = 'Invalid username/password!';
+			}
+		}
+
+		echo json_encode($rs); exit();
+	}
+
+	public function logout() {
+		$this->api->logout();
 	}
 }

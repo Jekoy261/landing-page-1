@@ -20,14 +20,18 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		// $this->load->view('welcome_message');
-
 		$data = [
 			'pf_year'    => date('Y') . ' - '. date('Y',strtotime(date("Y", time()) . " + 365 day")),
 			'today_year' => date('Y'), 
 		];
 
-		$this->load->view('includes/header.php');
-		$this->load->view('home/index', $data);
+		$auth = $this->session->userdata('auth');
+		if ($auth) {
+
+		} else {
+			$this->load->view('includes/header.php');
+			$this->load->view('home/index', $data);
+		}
+
 	}
 }
